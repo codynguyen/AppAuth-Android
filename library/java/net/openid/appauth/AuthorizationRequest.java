@@ -553,6 +553,9 @@ public class AuthorizationRequest {
         @SuppressWarnings("NullableProblems")
         private Uri mRedirectUri;
 
+        @NonNull
+        private Uri mDestinationUri;
+
         @Nullable
         private String mScope;
 
@@ -714,6 +717,18 @@ public class AuthorizationRequest {
         @NonNull
         public Builder setRedirectUri(@NonNull Uri redirectUri) {
             mRedirectUri = checkNotNull(redirectUri, "redirect URI cannot be null or empty");
+            return this;
+        }
+
+        /**
+         * Specifies the client's redirect URI. Cannot be null or empty.
+         *
+         * @see "The OAuth 2.0 Authorization Framework (RFC 6749), Section 3.1.2
+         * <https://tools.ietf.org/html/rfc6749#section-3.1.2>"
+         */
+        @NonNull
+        public Builder setDestinationUri(@NonNull Uri destinationUri {
+            mDestinationUri = checkNotNull(destinationUri, "destination URI cannot be null or empty");
             return this;
         }
 
@@ -909,6 +924,7 @@ public class AuthorizationRequest {
                     mClientId,
                     mResponseType,
                     mRedirectUri,
+                    mDestinationUri,
                     mDisplay,
                     mLoginHint,
                     mPrompt,
@@ -928,6 +944,7 @@ public class AuthorizationRequest {
             @NonNull String clientId,
             @NonNull String responseType,
             @NonNull Uri redirectUri,
+            @NonNull Uri destinationUri,
             @Nullable String display,
             @Nullable String loginHint,
             @Nullable String prompt,
